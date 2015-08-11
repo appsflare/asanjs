@@ -16,7 +16,14 @@ export class ControllerConnector {
         options.lifecycle.created = function () {
             this.controller = new me.controllerType(this);
             if (me.options.template) {
-                this.appendChild(xtag.createFragment(me.options.template));
+                var template = me.options.template;
+                if (this.controller.attachingTemplate) {
+                    template = this.controller.attachingTemplate(template);
+                }
+                this.appendChild(xtag.createFragment(template));
+                if (this.controller.attachedTemplate) {
+                    this.controller.attachedTemplate();
+                }
             }
             me._created.apply(this, arguments);
         };
@@ -34,6 +41,6 @@ export class ControllerConnector {
     }
 
     static connect(controllerType, options) {
-        return new ControllerConnector(controllerType,options).options;
+        return new ControllerConnector(controllerType, options).options;
     }
 };

@@ -4,6 +4,14 @@ export class BaseCustomElement
 		this.element = element;
 	}
 
+    attachingTemplate(template){
+        return template;
+    }
+
+    attachedTemplate(){
+
+    }
+
 	query(sel){
 		return this.element.querySelector(sel);
 	}

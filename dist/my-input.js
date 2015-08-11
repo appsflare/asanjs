@@ -3,7 +3,7 @@ System.register("examples/my-input.html!text", [], true, function(require, expor
   var global = System.global,
       __define = global.define;
   global.define = undefined;
-  module.exports = "<div>\r\n\tHi, I am inside my-input element\r\n\t<input id=\"input\" type=\"text\"/>\r\n\t<button >Set</button>\r\n\t<button id=\"clear\">Clear</button>\r\n</div>";
+  module.exports = "<div>\n\tHi, I am inside my-input element\n\t<input id=\"input\" type=\"text\"/>\n\t<button >Set</button>\n\t<button id=\"clear\">Clear</button>\n</div>\n";
   global.define = __define;
   return module.exports;
 });
@@ -21,7 +21,7 @@ System.register('examples/my-input', ['npm:babel-runtime@5.5.5/helpers/get', 'np
     }, function (_npmBabelRuntime555HelpersClassCallCheck) {
       _classCallCheck = _npmBabelRuntime555HelpersClassCallCheck['default'];
     }, function (_asan) {
-      Asan = _asan['default'];
+      Asan = _asan.Asan;
     }, function (_examplesMyInputHtmlText) {
       template = _examplesMyInputHtmlText['default'];
     }],

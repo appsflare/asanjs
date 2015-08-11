@@ -5169,7 +5169,14 @@ System.register("src/controllerConnector", ["npm:babel-runtime@5.5.5/helpers/cre
                     options.lifecycle.created = function () {
                         this.controller = new me.controllerType(this);
                         if (me.options.template) {
-                            this.appendChild(xtag.createFragment(me.options.template));
+                            var template = me.options.template;
+                            if (this.controller.attachingTemplate) {
+                                template = this.controller.attachingTemplate(template);
+                            }
+                            this.appendChild(xtag.createFragment(template));
+                            if (this.controller.attachedTemplate) {
+                                this.controller.attachedTemplate();
+                            }
                         }
                         me._created.apply(this, arguments);
                     };
@@ -5427,6 +5434,14 @@ System.register("src/baseCustomElement", ["npm:babel-runtime@5.5.5/helpers/creat
 				}
 
 				_createClass(BaseCustomElement, [{
+					key: "attachingTemplate",
+					value: function attachingTemplate(template) {
+						return template;
+					}
+				}, {
+					key: "attachedTemplate",
+					value: function attachedTemplate() {}
+				}, {
 					key: "query",
 					value: function query(sel) {
 						return this.element.querySelector(sel);
