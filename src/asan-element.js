@@ -1,9 +1,9 @@
 import { BaseCustomElement } from './baseCustomElement';
-import  { attribute, customElement, lifeCycleEventHandler, deprecate, method, eventHandler } from './decorators';
+import  { attribute, customElement, lifeCycleEventHandler, deprecate, method, eventHandler } from 'asanjs-decorators';
 
 
 @customElement('asan-element',{ template:'Hi, I am element asan!!!'})
-export default class AsanElement extends BaseCustomElement {
+export class AsanElement extends BaseCustomElement {
 
   constructor(element) {
    super(element);

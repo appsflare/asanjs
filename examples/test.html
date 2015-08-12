@@ -8,7 +8,6 @@
     <!--<script src="src/lib/x-tag.js" type="text/javascript"></script>-->
     <!--<script src="src/lib/x-tag-components.js" type="text/javascript"></script>-->
     <script src="../jspm_packages/system.src.js" type="text/javascript"></script>
-    <script src="asan.js" type="text/javascript"></script>
     <!--<<script src="asan.js" type="text/javascript"></script>
     script src="my-input.js" type="text/javascript"></script>-->
 
@@ -25,20 +24,21 @@
             }));
         };
 
-        importAll(['asan', 'examples/my-input'])
-            .then(function (modules) {
+        importAll(['./system/asan', 'my-input'])
+            .then(function (_export) {
                 debugger;
+                System.import('examples/my-input')
+                    .then(function (_export1) {
+                        debugger;
+                        //_export.Asan.test();
 
-                var AsanElement = modules[0].Asan.AsanElement;
-                //_export.Asan.test();
-
-                document.querySelector('#test-surface').innerHTML = '<asan-element></asan-element><my-input id="extended" type="text"></my-input><my-input id="extended1" type="text"></my-input>';
+                        document.querySelector('#test-surface').innerHTML = '<asan-element></asan-element><my-input id="extended" type="text"></my-input><my-input id="extended1" type="text"></my-input>';
 
 
-
-            }).catch(function (e) {
-                debugger;
-                console.error(e);
+                    }).catch(function (e) {
+                        debugger;
+                        console.error(e);
+                    });
             });
     </script>
 

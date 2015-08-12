@@ -5,7 +5,7 @@ export class BaseCustomElement
 	}
 
     attachingTemplate(template){
-        return template;
+        return new Promise((resolve,reject)=> resolve(template));
     }
 
     attachedTemplate(){

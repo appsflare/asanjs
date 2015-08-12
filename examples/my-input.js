@@ -1,6 +1,6 @@
-import { Asan } from 'asan';
+import { BaseCustomElement } from 'asan';
 import template from './my-input.html!text';
-let { attribute, customElement, lifeCycleEventHandler, deprecate, method, eventHandler } = Asan.Decorators;
+import { attribute, customElement, lifeCycleEventHandler, deprecate, method, eventHandler } from 'asanjs-decorators';
 
 @customElement('my-input',{ template:template})
 export default class ExtendedInput extends Asan.BaseCustomElement {
