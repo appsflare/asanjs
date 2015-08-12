@@ -87,7 +87,7 @@ System.register(['asanjs-decorators'], function (_export) {
         }]);
 
         var _AsanElement = AsanElement;
-        AsanElement = customElement('asan-element', { template: 'Hi, I am element asan!!!' })(AsanElement) || AsanElement;
+        AsanElement = customElement('asan-element', { template: '<span>Hi, I am element asan!!!</span>' })(AsanElement) || AsanElement;
         return AsanElement;
       })(BaseCustomElement);
 

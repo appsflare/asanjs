@@ -77,7 +77,7 @@ define(['exports', 'asanjs-decorators'], function (exports, _asanjsDecorators) {
     }]);
 
     var _AsanElement = AsanElement;
-    AsanElement = _asanjsDecorators.customElement('asan-element', { template: 'Hi, I am element asan!!!' })(AsanElement) || AsanElement;
+    AsanElement = _asanjsDecorators.customElement('asan-element', { template: '<span>Hi, I am element asan!!!</span>' })(AsanElement) || AsanElement;
     return AsanElement;
   })(BaseCustomElement);
 
