@@ -24,7 +24,7 @@ System.register(['asanjs-decorators'], function (_export) {
                     _classCallCheck(this, BaseCustomElement);
 
                     this.element = element;
-                    this.__active = true;
+                    this.__suspended = true;
                 }
 
                 BaseCustomElement.prototype.attachingTemplate = function attachingTemplate(template) {
@@ -33,20 +33,53 @@ System.register(['asanjs-decorators'], function (_export) {
 
                 BaseCustomElement.prototype.attachedTemplate = function attachedTemplate() {};
 
-                BaseCustomElement.prototype.suspend = function suspend() {
+                BaseCustomElement.prototype.suspend = function suspend(args) {
                     var _this = this;
 
                     return this.suspending().then(function (val) {
-                        _this.__active = val;
-                        _this.suspended();
+                        _this.__suspended = val;
+                        if (_this.isSuspended()) {
+                            var state = _this.__suspension = {
+                                parent: _this.element.parentNode,
+                                element: _this.element,
+                                holder: document.createComment('element suspended')
+                            };
+                            state.parent.replaceChild(state.holder, state.element);
+                            _this.suspended(args);
+                        }
                     });
                 };
 
-                BaseCustomElement.prototype.suspending = function suspending() {
+                BaseCustomElement.prototype.suspending = function suspending(args) {
                     return Promise.resolve(true);
                 };
 
                 BaseCustomElement.prototype.suspended = function suspended() {};
+
+                BaseCustomElement.prototype.isSuspended = function isSuspended() {
+                    return this.__suspended;
+                };
+
+                BaseCustomElement.prototype.restore = function restore(args) {
+                    var _this2 = this;
+
+                    return this.restoring(args).then(function (val) {
+                        _this2.__suspended = !val;
+                        if (!_this2.isSuspended()) {
+                            if (!_this2.element.parentNode && _this2.__suspension) {
+                                _this2.__suspension.parent.replaceChild(_this2.__suspension.element, _this2.__suspension.holder);
+                                _this2.__suspension = undefined;
+                                _this2.restored(args);
+                            }
+                        }
+                    });
+                };
+
+                BaseCustomElement.prototype.restoring = function restoring(args) {
+                    return Promise.resolve(true);
+                };
+
+                BaseCustomElement.prototype.restored = function restored(args) {};
 
                 BaseCustomElement.prototype.query = function query(sel) {
                     return this.element.querySelector(sel);

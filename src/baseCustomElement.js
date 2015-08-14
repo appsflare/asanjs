@@ -1,7 +1,7 @@
 export class BaseCustomElement {
     constructor(element) {
         this.element = element;
-        this.__active = true;
+        this.__suspended = true;
     }
 
     attachingTemplate(template) {
@@ -14,19 +14,53 @@ export class BaseCustomElement {
 
 
 
-    suspend() {
+    suspend(args) {
         return this.suspending()
             .then(val => {
-                this.__active = val;
-                this.suspended();
+                this.__suspended = val;
+                if (this.isSuspended()) {
+                    let state = this.__suspension = {
+                        parent: this.element.parentNode,
+                        element: this.element,
+                        holder: document.createComment('element suspended')
+                    };
+                    state.parent.replaceChild(state.holder, state.element);
+                    this.suspended(args);
+                }
             });
     }
 
-    suspending() {
+    suspending(args) {
         return Promise.resolve(true);
     }
 
     suspended() {
+
+    }
+
+    isSuspended() {
+        return this.__suspended;
+    }
+
+    restore(args) {
+        return this.restoring(args)
+            .then(val => {
+                this.__suspended = !val;
+                if (!this.isSuspended()) {
+                    if (!this.element.parentNode && this.__suspension) {
+                        this.__suspension.parent.replaceChild(this.__suspension.element, this.__suspension.holder);
+                        this.__suspension = undefined;
+                        this.restored(args);
+                    }
+                }
+            });
+    }
+
+    restoring(args) {
+        return Promise.resolve(true);
+    }
+
+    restored(args) {
 
     }
 

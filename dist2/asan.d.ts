@@ -4,9 +4,13 @@ declare module 'asan' {
     constructor(element: any);
     attachingTemplate(template: any): any;
     attachedTemplate(): any;
-    suspend(): any;
-    suspending(): any;
+    suspend(args: any): any;
+    suspending(args: any): any;
     suspended(): any;
+    isSuspended(): any;
+    restore(args: any): any;
+    restoring(args: any): any;
+    restored(args: any): any;
     query(sel: any): any;
     queryAll(sel: any): any;
   }
