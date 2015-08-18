@@ -24,6 +24,12 @@ var BaseCustomElement = (function () {
 
     BaseCustomElement.prototype.attachedTemplate = function attachedTemplate() {};
 
+    BaseCustomElement.prototype.created = function created() {};
+
+    BaseCustomElement.prototype.inserted = function inserted() {};
+
+    BaseCustomElement.prototype.removed = function removed() {};
+
     BaseCustomElement.prototype.suspend = function suspend(args) {
         var _this = this;
 
@@ -95,17 +101,17 @@ var AsanElement = (function (_BaseCustomElement) {
     }
 
     _createDecoratedClass(AsanElement, [{
-        key: 'created',
-        decorators: [_asanjsDecorators.lifeCycleEventHandler()],
-        value: function created() {}
+        key: 'onCreated',
+        decorators: [_asanjsDecorators.lifeCycleEventHandler('created')],
+        value: function onCreated() {}
     }, {
-        key: 'inserted',
-        decorators: [_asanjsDecorators.lifeCycleEventHandler()],
-        value: function inserted() {}
+        key: 'onInserted',
+        decorators: [_asanjsDecorators.lifeCycleEventHandler('inserted')],
+        value: function onInserted() {}
     }, {
-        key: 'removed',
-        decorators: [_asanjsDecorators.lifeCycleEventHandler()],
-        value: function removed() {}
+        key: 'onRemoved',
+        decorators: [_asanjsDecorators.lifeCycleEventHandler('removed')],
+        value: function onRemoved() {}
     }, {
         key: 'attributeChanged',
         decorators: [_asanjsDecorators.lifeCycleEventHandler()],

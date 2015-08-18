@@ -4,6 +4,9 @@ declare module 'asan' {
     constructor(element: any);
     attachingTemplate(template: any): any;
     attachedTemplate(): any;
+    created(): any;
+    inserted(): any;
+    removed(): any;
     suspend(args: any): any;
     suspending(args: any): any;
     suspended(): any;
@@ -16,9 +19,9 @@ declare module 'asan' {
   }
   export class AsanElement extends BaseCustomElement {
     constructor(element: any);
-    created(): any;
-    inserted(): any;
-    removed(): any;
+    onCreated(): any;
+    onInserted(): any;
+    onRemoved(): any;
     attributeChanged(): any;
     setValue(): any;
     clearValue(): any;

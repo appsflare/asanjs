@@ -14,6 +14,17 @@ export class BaseCustomElement {
 
     }
 
+    created(){
+
+    }
+
+    inserted(){
+
+    }
+
+    removed(){
+
+    }
 
 
     suspend(args) {
@@ -74,6 +85,7 @@ export class BaseCustomElement {
         return this.element.querySelectorAll(sel);
     }
 }
+
 @customElement('asan-element',{ template:'<span>Hi, I am element asan!!!</span>'})
 export class AsanElement extends BaseCustomElement {
 
@@ -81,22 +93,22 @@ export class AsanElement extends BaseCustomElement {
    super(element);
   }
 
-  @lifeCycleEventHandler()
-  created() {
+  @lifeCycleEventHandler('created')
+  onCreated() {
     // fired once at the time a component
     // is initially created or parsed
 
   }
 
-  @lifeCycleEventHandler()
-  inserted() {
+  @lifeCycleEventHandler('inserted')
+  onInserted() {
     // fired each time a component
     // is inserted into the DOM
 
   }
 
-  @lifeCycleEventHandler()
-  removed() {
+  @lifeCycleEventHandler('removed')
+  onRemoved() {
     // fired each time an element
     // is removed from DOM
 

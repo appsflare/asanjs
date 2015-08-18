@@ -33,6 +33,12 @@ System.register(['asanjs-decorators'], function (_export) {
 
                 BaseCustomElement.prototype.attachedTemplate = function attachedTemplate() {};
 
+                BaseCustomElement.prototype.created = function created() {};
+
+                BaseCustomElement.prototype.inserted = function inserted() {};
+
+                BaseCustomElement.prototype.removed = function removed() {};
+
                 BaseCustomElement.prototype.suspend = function suspend(args) {
                     var _this = this;
 
@@ -104,17 +110,17 @@ System.register(['asanjs-decorators'], function (_export) {
                 }
 
                 _createDecoratedClass(AsanElement, [{
-                    key: 'created',
-                    decorators: [lifeCycleEventHandler()],
-                    value: function created() {}
+                    key: 'onCreated',
+                    decorators: [lifeCycleEventHandler('created')],
+                    value: function onCreated() {}
                 }, {
-                    key: 'inserted',
-                    decorators: [lifeCycleEventHandler()],
-                    value: function inserted() {}
+                    key: 'onInserted',
+                    decorators: [lifeCycleEventHandler('inserted')],
+                    value: function onInserted() {}
                 }, {
-                    key: 'removed',
-                    decorators: [lifeCycleEventHandler()],
-                    value: function removed() {}
+                    key: 'onRemoved',
+                    decorators: [lifeCycleEventHandler('removed')],
+                    value: function onRemoved() {}
                 }, {
                     key: 'attributeChanged',
                     decorators: [lifeCycleEventHandler()],
