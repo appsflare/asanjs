@@ -9,22 +9,22 @@ export class AsanElement extends BaseCustomElement {
    super(element);
   }
 
-  @lifeCycleEventHandler()
-  created() {
+  @lifeCycleEventHandler('created')
+  onCreated() {
     // fired once at the time a component
     // is initially created or parsed
 
   }
 
-  @lifeCycleEventHandler()
-  inserted() {
+  @lifeCycleEventHandler('inserted')
+  onInserted() {
     // fired each time a component
     // is inserted into the DOM
 
   }
 
-  @lifeCycleEventHandler()
-  removed() {
+  @lifeCycleEventHandler('removed')
+  onRemoved() {
     // fired each time an element
     // is removed from DOM
 

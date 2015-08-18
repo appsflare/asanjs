@@ -12,6 +12,17 @@ export class BaseCustomElement {
 
     }
 
+    created(){
+
+    }
+
+    inserted(){
+
+    }
+
+    removed(){
+
+    }
 
 
     suspend(args) {
