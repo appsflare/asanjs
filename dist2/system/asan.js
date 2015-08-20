@@ -24,7 +24,7 @@ System.register(['asanjs-decorators'], function (_export) {
                     _classCallCheck(this, BaseCustomElement);
 
                     this.element = element;
-                    this.__suspended = true;
+                    this.__suspended = false;
                 }
 
                 BaseCustomElement.prototype.attachingTemplate = function attachingTemplate(template) {

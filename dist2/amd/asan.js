@@ -14,7 +14,7 @@ define(['exports', 'asanjs-decorators'], function (exports, _asanjsDecorators) {
             _classCallCheck(this, BaseCustomElement);
 
             this.element = element;
-            this.__suspended = true;
+            this.__suspended = false;
         }
 
         BaseCustomElement.prototype.attachingTemplate = function attachingTemplate(template) {

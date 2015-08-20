@@ -3,7 +3,7 @@ import {attribute,customElement,lifeCycleEventHandler,deprecate,method,eventHand
 export class BaseCustomElement {
     constructor(element) {
         this.element = element;
-        this.__suspended = true;
+        this.__suspended = false;
     }
 
     attachingTemplate(template) {
