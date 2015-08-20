@@ -4,6 +4,10 @@ export class BaseCustomElement {
         this.__suspended = false;
     }
 
+    processingTemplate(template) {
+        return Promise.resolve(template);
+    }
+
     attachingTemplate(template) {
         return Promise.resolve(template);
     }

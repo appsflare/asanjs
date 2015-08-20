@@ -18,6 +18,10 @@ var BaseCustomElement = (function () {
         this.__suspended = false;
     }
 
+    BaseCustomElement.prototype.processingTemplate = function processingTemplate(template) {
+        return Promise.resolve(template);
+    };
+
     BaseCustomElement.prototype.attachingTemplate = function attachingTemplate(template) {
         return Promise.resolve(template);
     };
@@ -103,35 +107,45 @@ var AsanElement = (function (_BaseCustomElement) {
     _createDecoratedClass(AsanElement, [{
         key: 'onCreated',
         decorators: [_asanjsDecorators.lifeCycleEventHandler('created')],
-        value: function onCreated() {}
+        value: function onCreated() {
+            console.log('asan-element created: OK');
+        }
     }, {
         key: 'onInserted',
         decorators: [_asanjsDecorators.lifeCycleEventHandler('inserted')],
-        value: function onInserted() {}
+        value: function onInserted() {
+            console.log('asan-element inserted: OK');
+        }
     }, {
         key: 'onRemoved',
         decorators: [_asanjsDecorators.lifeCycleEventHandler('removed')],
-        value: function onRemoved() {}
+        value: function onRemoved() {
+            console.log('asan-element removed: OK');
+        }
     }, {
         key: 'attributeChanged',
         decorators: [_asanjsDecorators.lifeCycleEventHandler()],
-        value: function attributeChanged() {}
+        value: function attributeChanged() {
+            console.log('asan-element some attribute has been changed: OK');
+        }
     }, {
-        key: 'setValue',
+        key: 'handleClick',
         decorators: [_asanjsDecorators.eventHandler('click:delegate(button)')],
-        value: function setValue() {}
+        value: function handleClick() {
+            console.log('asan-element some button inside me has been clicked: OK');
+        }
     }, {
-        key: 'clearValue',
-        decorators: [_asanjsDecorators.eventHandler('click:delegate(#clear)')],
-        value: function clearValue() {}
-    }, {
-        key: 'makeApi',
+        key: 'checMe',
         decorators: [_asanjsDecorators.method()],
-        value: function makeApi() {}
+        value: function checMe() {
+            alert('Boom!!!, Yeah.... I\'ve been checked. Happy checking!!!');
+        }
     }]);
 
     var _AsanElement = AsanElement;
-    AsanElement = _asanjsDecorators.customElement('asan-element', { template: '<span>Hi, I am element asan!!!</span>' })(AsanElement) || AsanElement;
+    AsanElement = _asanjsDecorators.customElement('asan-element', {
+        template: '<span>Hi, I am element asan!!!</span>'
+    })(AsanElement) || AsanElement;
     return AsanElement;
 })(BaseCustomElement);
 

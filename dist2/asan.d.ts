@@ -2,6 +2,7 @@ declare module 'asan' {
   import { attribute, customElement, lifeCycleEventHandler, deprecate, method, eventHandler }  from 'asanjs-decorators';
   export class BaseCustomElement {
     constructor(element: any);
+    processingTemplate(template: any): any;
     attachingTemplate(template: any): any;
     attachedTemplate(): any;
     created(): any;
@@ -23,8 +24,7 @@ declare module 'asan' {
     onInserted(): any;
     onRemoved(): any;
     attributeChanged(): any;
-    setValue(): any;
-    clearValue(): any;
-    makeApi(): any;
+    handleClick(): any;
+    checMe(): any;
   }
 }

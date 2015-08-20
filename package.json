@@ -1,6 +1,6 @@
 {
   "name": "asan",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "jspm": {
     "main": "dist2/commonjs/asan.js",
     "directories": {},
